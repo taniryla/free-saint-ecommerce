@@ -80,7 +80,7 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'skincareryland',
+        'NAME': 'skincare',
     }
 }
 
