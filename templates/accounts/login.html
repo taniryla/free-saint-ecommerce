@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="section-content padding-y" style="min-height:70vh">
+
+
+    {% if request.GET.command == 'verification' %}
+
+    <div class="container mx-auto alert alert-info text-center mt-4" role="alert" style="max-width: 60vmin;">
+        Hello beautiful. Thank you for registering with us. We have sent you a verification email to your email address [{{ request.GET.email }}]
+        <br><br> Sign in for a rejuvanating experience! <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    {% else %}
+
+    <div class="card mx-auto mt-4" style="max-width: 60vmin;">
+
+        <div class="card-body">
+            <h4 class="card-title mb-4">Sign in</h4>
+            {% include 'includes/alerts.html' %}
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email Address" name="email">
+                    <input type="hidden" class="form-control" value="{{ next }}" name="next">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                </div>
+
+                <div class="form-group">
+                    <a href="{% url 'forgetPassword' %}" class="float-right">Forgot password?</a>
+
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark text-white btn-block"> Login  </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <p class="text-center mt-4">Need an account? <a href="{% url 'signup' %}">Sign up</a></p>
+    <br><br> {% endif %}
+
+</div>
+{% endblock %}
