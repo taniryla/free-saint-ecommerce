@@ -3,8 +3,11 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'store/home.html')
 
+
+def cart(request):
+    return render(request, 'store/products/cart.html')
 
 # placed here temporarily until order category app are created
 

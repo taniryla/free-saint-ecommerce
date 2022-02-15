@@ -1,13 +1,12 @@
 from django.urls import path
 from . import views
 
+app_name = 'store'
+
 urlpatterns = [
-    path('store/', views.store, name='store'),  # delete when store app created
-    path('', views.store, name='store'),  # delete when store app created
-    # path('store/', include('store.urls')),
-    # delete when order/cart app created
-    path('cart/', views.cart, name='cart'),
-    # path('cart/', include('cart.urls')),
-    # delete when search is created
-    path('product_detail/', views.product_detail, name='product_detail'),
+    path('', views.all_products, name='all_products'),
+    path('base/', views.base, name='base'),
+    path('item/<slug:slug>/', views.product_detail, name='product_detail'),
+    path('search/<slug:category_slug>/',
+         views.category_list, name='category_list'),
 ]

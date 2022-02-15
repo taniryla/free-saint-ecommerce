@@ -24,9 +24,9 @@ class Product(models.Model):
     product_name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField(blank=True)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=2, decimal_places=2)
     product_images = models.ImageField(blank=True, upload_to='images/')
-    stock = models.IntegerField()
+    stock = models.PositiveIntegerField()
 
     # required
 
@@ -38,6 +38,9 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('-created_date',)
+
+    def get_absolute_url(self):
+        return reverse("store:product_detail", args=[self.slug])
 
     def __str__(self):
         return self.product_name
